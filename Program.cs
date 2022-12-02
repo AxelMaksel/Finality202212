@@ -2,10 +2,21 @@
 int arrayLength = array.Length;
 int min = 3; // ограничитель, фильтр массива
 int sizeNewArray = CountElementTrue(array);
-string[] newArray = new string[sizeNewArray];
-newArray = FilterArray(array);
-PrintArray(newArray);
+Console.WriteLine($"Первичный массив:");
+PrintArray(array);
+Console.WriteLine();
+if (sizeNewArray > 0)
+{
 
+    Console.WriteLine($"Массив после обработки:");
+    string[] newArray = new string[sizeNewArray];
+    newArray = FilterArray(array, sizeNewArray);
+    PrintArray(newArray);
+}
+else
+{
+    Console.WriteLine($"Ввашем первом массиве нет подходящих элементов длиной меньше или равной{min}");
+}
 
 int CountElementTrue(string[] arr)
 {
@@ -16,18 +27,19 @@ int CountElementTrue(string[] arr)
     }
     return count;
 }
-string[] FilterArray(string[] arr)
+string[] FilterArray(string[] arr, int size)
 {
     int k = 0;
+    string[] newArr = new string[size];
     for (int i = 0; i < arrayLength; i++)
     {
         if (arr[i].Length <= min)
         {
-            newArray[k] = arr[i];
+            newArr[k] = arr[i];
             k++;
         }
     }
-    return newArray;
+    return newArr;
 }
 
 void PrintArray(string[] arr)
